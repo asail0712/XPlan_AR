@@ -3,6 +3,7 @@
  
 # 2.安裝指南
 ### 系統要求
+- Unity 2022.3.33f1 或更高版本
 - [XPlan 2.0.2](https://github.com/asail0712/XPlanDemo)
 - AR Foundation 5.1.5
 ### 安裝指南
