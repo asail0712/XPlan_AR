@@ -3,10 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-#if AR_FOUNDATION
+#if !VUFORIA_IOS_SETTINGS && !VUFORIA_ANDROIDS_SETTINGS
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
-#elif VUFORIA_IOS_SETTINGS || VUFORIA_ANDROIDS_SETTINGS
+#else
 using Vuforia;
 #endif //AR_FOUNDATION
 
@@ -19,20 +19,20 @@ namespace XPlan.AR
 	{
 		[SerializeField] Vector3 relativePos;
 
-#if AR_FOUNDATION
+#if !VUFORIA_IOS_SETTINGS && !VUFORIA_ANDROIDS_SETTINGS
 		[SerializeField] private ARTrackedImageManager trackedImageMgr;
-#elif VUFORIA_IOS_SETTINGS || VUFORIA_ANDROIDS_SETTINGS
+#else
 		[SerializeField] private DefaultObserverEventHandler observerEventHandler;
 
 		private Coroutine trackCoroutine	= null;
 		private bool bTargetFound			= false;
-#endif		
+#endif
 
 		private void OnEnable()
 		{
-#if AR_FOUNDATION
+#if !VUFORIA_IOS_SETTINGS && !VUFORIA_ANDROIDS_SETTINGS
 			trackedImageMgr.trackedImagesChanged += OnTrakedImgChanged;
-#elif VUFORIA_IOS_SETTINGS || VUFORIA_ANDROIDS_SETTINGS
+#else
 			if (observerEventHandler == null)
 			{
 				return;
@@ -54,9 +54,9 @@ namespace XPlan.AR
 
 		private void OnDisable()
 		{
-#if AR_FOUNDATION
+#if !VUFORIA_IOS_SETTINGS && !VUFORIA_ANDROIDS_SETTINGS
 			trackedImageMgr.trackedImagesChanged -= OnTrakedImgChanged;
-#elif VUFORIA_IOS_SETTINGS || VUFORIA_ANDROIDS_SETTINGS
+#else
 			if (trackCoroutine != null)
 			{
 				StopCoroutine(trackCoroutine);
@@ -81,7 +81,7 @@ namespace XPlan.AR
 #endif
 		}
 
-#if AR_FOUNDATION
+#if !VUFORIA_IOS_SETTINGS && !VUFORIA_ANDROIDS_SETTINGS
 		private void OnTrakedImgChanged(ARTrackedImagesChangedEventArgs eventArgs)
 		{
 			foreach (ARTrackedImage imgTracker in eventArgs.added)
@@ -103,7 +103,7 @@ namespace XPlan.AR
 				msg.Send();
 			}
 		}
-#elif VUFORIA_IOS_SETTINGS || VUFORIA_ANDROIDS_SETTINGS
+#else
 		private void OnTargetFound()
 		{
 			ObserverBehaviour mObserverBehaviour = observerEventHandler.GetComponent<ObserverBehaviour>();

@@ -3,10 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-#if AR_FOUNDATION
+#if !VUFORIA_IOS_SETTINGS && !VUFORIA_ANDROIDS_SETTINGS
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.Management;
-#endif //AR_FOUNDATION
+# endif //!VUFORIA_IOS_SETTINGS && !VUFORIA_ANDROIDS_SETTINGS
 
 using XPlan.Utility;
 
@@ -19,7 +19,7 @@ namespace XPlan.AR
 		// 必須在載入場景前呼叫
 		static public void XRReset()
 		{
-#if AR_FOUNDATION
+#if !VUFORIA_IOS_SETTINGS && !VUFORIA_ANDROIDS_SETTINGS
 			XRGeneralSettings xrSetting = XRGeneralSettings.Instance;
 			if (xrSetting != null)
 			{
@@ -36,7 +36,7 @@ namespace XPlan.AR
 
 				LogSystem.Record("XR Enabled", LogType.Log);
 			}
-#endif //AR_FOUNDATION
+# endif //!VUFORIA_IOS_SETTINGS && !VUFORIA_ANDROIDS_SETTINGS
 		}
 
 		static public void CheckARSupport(Action<bool> finishAction)
@@ -56,7 +56,7 @@ namespace XPlan.AR
 			LogSystem.Record("Windows support AR", LogType.Log);
 
 			bResult = true;
-#elif AR_FOUNDATION
+#elif !VUFORIA_IOS_SETTINGS && !VUFORIA_ANDROIDS_SETTINGS
 			yield return ARSession.CheckAvailability();
 
 			switch (ARSession.state)
@@ -75,7 +75,7 @@ namespace XPlan.AR
 					break;
 			}
 #endif
-      finishAction?.Invoke(bResult);
+			finishAction?.Invoke(bResult);
 		}
 	}
 }

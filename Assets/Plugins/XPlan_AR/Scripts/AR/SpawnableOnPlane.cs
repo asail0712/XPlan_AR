@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-#if AR_FOUNDATION
+#if !VUFORIA_IOS_SETTINGS && !VUFORIA_ANDROIDS_SETTINGS
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 #endif //AR_FOUNDATION
@@ -15,7 +15,7 @@ namespace XPlan.AR
 { 
     public class SpawnableOnPlane : MonoBehaviour
     {
-#if AR_FOUNDATION
+#if !VUFORIA_IOS_SETTINGS && !VUFORIA_ANDROIDS_SETTINGS
         [SerializeField] private ARRaycastManager raycastManager;
         [SerializeField] private float duration = 1f;
 
