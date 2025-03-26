@@ -177,7 +177,7 @@ namespace XPlan.Scenes
 
 		private void RemoveSceneStack(int sceneIdx)
 		{			
-			while (currSceneStack.Contains(sceneIdx))
+			if(currSceneStack[currSceneStack.Count - 1] == sceneIdx)
 			{
 				currSceneStack.RemoveAt(currSceneStack.Count - 1);
 			}
@@ -211,7 +211,7 @@ namespace XPlan.Scenes
 					// 考慮到SceneLevel的差距，所以強制關閉，不用等回調
 					AddQueueUnload(currSceneIndex);
 
-					RemoveSceneStack(buildIndex);
+					RemoveSceneStack(currSceneIndex);
 				}
 				else if (currScenelevel == newScenelevel)
 				{
@@ -221,7 +221,7 @@ namespace XPlan.Scenes
 					}
 					else 
 					{
-						// 先loading 再做unload 避免畫面太空
+						// 先loading 再做unload 避免畫面出現空白的過度
 						AddQueueLoad(buildIndex, finishAction, bActiveScene);
 						AddQueueUnload(currSceneIndex);
 
@@ -234,7 +234,7 @@ namespace XPlan.Scenes
 				{
 					AddQueueLoad(buildIndex, finishAction, bActiveScene);
 
-					RemoveSceneStack(buildIndex);
+					AddSceneStack(buildIndex);
 					break;
 				}
 			}
@@ -301,6 +301,11 @@ namespace XPlan.Scenes
 
 		protected void AddQueueUnload(int sceneIdx)
 		{
+			if(sceneIdx == -1)
+            {
+				return;
+            }
+
 			Debug.Log($"xx加入卸載佇列xx {sceneIdx}");
 			changeQueue.Add(new UnloadInfo(sceneIdx));
 		}
@@ -385,7 +390,10 @@ namespace XPlan.Scenes
 
 			if(idx == -1)
 			{
-				return -1;
+				return currSceneStack.FindLastIndex((E04) => 
+				{
+					return E04 == -1;
+				});
 			}
 
 			return sceneInfoList[idx].level;

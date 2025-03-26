@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5524728936780685536}
-  - component: {fileID: 5524728936780685537}
+  - component: {fileID: -3913698648377541631}
   m_Layer: 0
   m_Name: UIController
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5524728936780685537
+--- !u!114 &-3913698648377541631
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,7 +41,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 5524728936780685538}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71db8789324924b478490cb527fba265, type: 3}
+  m_Script: {fileID: 11500000, guid: 615010d0d6fcdcf4787fb03dcdeee356, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   uiRootList: []
+  csvAssetList: []
