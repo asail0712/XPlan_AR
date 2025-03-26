@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1163274817381225259}
-  - component: {fileID: -1923394980781749474}
+  - component: {fileID: 5728745971265054887}
   m_Layer: 0
   m_Name: UILoader
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-1923394980781749474
+--- !u!114 &5728745971265054887
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,7 +41,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 344009898544130911}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7450d5b679bf61946a49418b81c13ab7, type: 3}
+  m_Script: {fileID: 11500000, guid: b6a416840e629c5469f76f0fbf236f76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   loadingList: []
